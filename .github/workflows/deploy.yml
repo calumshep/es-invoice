@@ -19,7 +19,7 @@ jobs:
           set -e
           cd /var/www/portal
           echo "Deploying application ..."
-          (php artisan down --message 'The app is being (quickly!) updated. Please try again in a minute.') || true
+          (php artisan down) || true
             git fetch origin master
             git reset --hard origin/master
             composer install --no-interaction --prefer-dist --optimize-autoloader
