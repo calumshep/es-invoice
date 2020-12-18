@@ -31,7 +31,7 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
           set -e
-          cd /var/www/html
+          cd /var/www/portal
           git pull
           echo "Deploying application ..."
           (php artisan down --message 'The app is being (quickly!) updated. Please try again in a minute.') || true
