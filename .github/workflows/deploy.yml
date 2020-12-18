@@ -11,11 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-      run: composer install
+      run: /usr/bin/php7.4 /usr/local/bin/composer install
     - name: Create .env file
       run: cp .env.example .env
     - name: Generate application key
-      run: php artisan key:generate
+      run: /usr/bin/php7.4 artisan key:generate
     - name: Run tests
       run: vendor/bin/phpunit
 
