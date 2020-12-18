@@ -5,20 +5,6 @@ on:
     branches: master
 
 jobs:
-  test:
-    runs-on: ubuntu-20.04
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: /usr/bin/php7.4 /usr/local/bin/composer install
-    - name: Create .env file
-      run: cp .env.example .env
-    - name: Generate application key
-      run: /usr/bin/php7.4 artisan key:generate
-    - name: Run tests
-      run: vendor/bin/phpunit
-
   deploy:
     runs-on: ubuntu-latest
 
@@ -39,7 +25,7 @@ jobs:
             composer install --no-interaction --prefer-dist --optimize-autoloader
             php artisan migrate --force
             yarn install --prod
-            yarn run prod
+            yarn run production
             php artisan optimize
           php artisan up
           echo "Application deployed!"
