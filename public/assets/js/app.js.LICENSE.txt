@@ -1,4 +1,4 @@
-/* flatpickr v4.6.6, @license MIT */
+/* flatpickr v4.6.7, @license MIT */
 
 /*!
     * tiptap v1.29.6
@@ -103,7 +103,7 @@
  */
 
 /*!
- * vuex v3.5.1
+ * vuex v3.6.0
  * (c) 2020 Evan You
  * @license MIT
  */
