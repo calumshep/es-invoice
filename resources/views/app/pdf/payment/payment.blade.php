@@ -266,6 +266,11 @@
             text-align: right;
             color: #5851D8;
         }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -337,6 +342,10 @@
     <div class="total-display-box">
         <p class="total-display-label">@lang('pdf_payment_amount_received_label')</p>
         <span>{!! format_money_pdf($payment->amount, $payment->user->currency) !!}</span>
+    </div>
+
+    <div class="footer" style="width: 75%; padding-left: 12.5%;">
+        <img src="images/footer.png" alt="Edge Snowsport brands" style="max-width: 100%;">
     </div>
 </body>
 </html>
