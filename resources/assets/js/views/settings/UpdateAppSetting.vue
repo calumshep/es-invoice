@@ -8,7 +8,8 @@
         class="mt-2 text-sm leading-snug text-gray-500"
         style="max-width: 680px"
       >
-        {{ $t('settings.update_app.description') }}
+        <!--{{ $t('settings.update_app.description') }}-->
+        The app will be updated on request by the webmaster.
       </p>
     </template>
 
@@ -77,6 +78,7 @@
             </td>
           </tr>
         </table>
+        <!--
         <sw-button
           size="lg"
           class="mt-10"
@@ -85,6 +87,7 @@
         >
           {{ $t('settings.update_app.update') }}
         </sw-button>
+        -->
       </div>
 
       <div v-if="isUpdating" class="relative flex justify-between mt-4 content">
