@@ -354,7 +354,7 @@
                     <p style="font-size: 14px; margin-bottom: 5px;">
                         info@edge-snowsport.co.uk<br>
                         Duncan Shepherd &amp; Graeme Bartlett<br>
-                        <a href="edge-snowsport.co.uk" target="_blank">edge-snowsport.co.uk</a>
+                        <a href="https://edge-snowsport.co.uk/">edge-snowsport.co.uk</a>
                     </p>
                 </td>
             </tr>
@@ -397,7 +397,8 @@
             <p>
                 Edge Snowsport<br>
                 <strong>Sort code</strong> {{ config('bank.sort_code') }}<br>
-                <strong>Account number</strong> {{ config('bank.account_number') }}
+                <strong>Account number</strong> {{ config('bank.account_number') }}<br>
+                Use invoice number as reference
             </p>
         </div>
 
