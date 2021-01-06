@@ -438,7 +438,7 @@ export default {
         due_date: null,
         invoice_number: null,
         user_id: null,
-        invoice_template_id: 1,
+        invoice_template_id: 4,
         sub_total: null,
         total: null,
         tax: null,

@@ -445,7 +445,7 @@ export default {
         expiry_date: null,
         estimate_number: null,
         user_id: null,
-        estimate_template_id: 1,
+        estimate_template_id: 4,
         sub_total: null,
         total: null,
         tax: null,
