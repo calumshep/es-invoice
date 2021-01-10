@@ -853,7 +853,7 @@ export default {
       await this.fetchTaxTypes({ limit: 'all' })
       this.selectedCurrency = this.defaultCurrency
       this.newEstimate.estimate_date = moment().toString()
-      this.newEstimate.expiry_date = moment().add(7, 'days').toString()
+      this.newEstimate.expiry_date = moment().add(14, 'days').toString()
       this.isLoadingEstimate = false
     },
 

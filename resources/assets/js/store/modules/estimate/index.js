@@ -4,7 +4,7 @@ import * as getters from './getters'
 
 const initialState = {
   estimates: [],
-  estimateTemplateId: 1,
+  estimateTemplateId: 4,
   selectAllField: false,
   selectedEstimates: [],
   totalEstimates: 0,

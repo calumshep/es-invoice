@@ -529,10 +529,8 @@ export default {
     },
 
     isEdit() {
-      if (this.$route.name === 'invoices.edit') {
-        return true
-      }
-      return false
+      return this.$route.name === 'invoices.edit';
+
     },
 
     subtotalWithDiscount() {
@@ -844,7 +842,7 @@ export default {
       await this.fetchTaxTypes({ limit: 'all' })
       this.selectedCurrency = this.defaultCurrency
       this.newInvoice.invoice_date = moment().toString()
-      this.newInvoice.due_date = moment().add(7, 'days').toString()
+      this.newInvoice.due_date = moment().add(14, 'days').toString()
 
       this.isLoadingInvoice = false
     },
