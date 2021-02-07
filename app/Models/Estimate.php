@@ -33,9 +33,7 @@ class Estimate extends Model implements HasMedia
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
-        'estimate_date',
-        'expiry_date'
+        'deleted_at'
     ];
 
     protected $appends = [
@@ -428,16 +426,7 @@ class Estimate extends Model implements HasMedia
         $estimateTemplate = EstimateTemplate::find($this->estimate_template_id);
 
         $company = Company::find($this->company_id);
-        $logo = $company->getMedia('logo')->first();
-
-        $isSystem = FileDisk::whereSetAsDefault(true)->first()->isSystem();
-        $isLocalhost = config('session.domain') === 'localhost';
-
-        if ($logo && $isLocalhost && $isSystem) {
-            $logo = $logo->getPath();
-        } else if ($logo) {
-            $logo = $logo->getFullUrl();
-        }
+        $logo = $company->logo;
 
         view()->share([
             'estimate' => $this,
