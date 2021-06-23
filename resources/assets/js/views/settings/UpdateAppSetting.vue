@@ -59,9 +59,9 @@
         </label>
         <table class="w-1/2 mt-2 border-2 border-gray-200 table-fixed">
           <tr
-            class="p-2 border-2 border-gray-200"
             v-for="(ext, i) in requiredExtentions"
             :key="i"
+            class="p-2 border-2 border-gray-200"
           >
             <td width="70%" class="p-2 text-sm truncate">
               {{ i }}
@@ -109,8 +109,8 @@
       <!--  -->
       <ul v-if="isUpdating" class="w-full p-0 list-none">
         <li
-          class="flex justify-between w-full py-3 border-b border-gray-200 border-solid last:border-b-0"
           v-for="step in updateSteps"
+          class="flex justify-between w-full py-3 border-b border-gray-200 border-solid last:border-b-0"
         >
           <p class="m-0 text-sm leading-8">{{ $t(step.translationKey) }}</p>
           <div class="flex flex-row items-center">
@@ -118,8 +118,8 @@
               {{ step.time }}
             </span>
             <span
-              class="block py-1 text-sm text-center uppercase rounded-full"
               :class="statusClass(step)"
+              class="block py-1 text-sm text-center uppercase rounded-full"
               style="width: 88px"
             >
               {{ getStatus(step) }}
@@ -133,7 +133,7 @@
 
 <script>
 import LoadingIcon from '../../components/icon/LoadingIcon'
-
+import { mapActions } from 'vuex'
 export default {
   components: {
     LoadingIcon,
@@ -231,6 +231,8 @@ export default {
   },
 
   methods: {
+    ...mapActions('notification', ['showNotification']),
+
     getStatus(step) {
       if (step.started && step.completed) {
         return 'finished'
@@ -269,7 +271,11 @@ export default {
         this.isCheckingforUpdate = false
 
         if (!response.data.version) {
-          window.toastr['info'](this.$t('settings.update_app.latest_message'))
+          this.showNotification({
+            title: 'Info!',
+            type: 'info',
+            message: this.$t('settings.update_app.latest_message'),
+          })
           return
         }
 
@@ -286,16 +292,21 @@ export default {
       } catch (e) {
         this.isUpdateAvailable = false
         this.isCheckingforUpdate = false
-        window.toastr['error']('Something went wrong')
+        this.showNotification({
+          type: 'error',
+          message: 'Something went wrong',
+        })
       }
     },
 
     async onUpdateApp() {
       let path = null
       if (!this.allowToUpdate) {
-        window.toastr['error'](
-          'Your current configuration does not match the update requirements. Please try again after all the requirements are fulfilled.  '
-        )
+        this.showNotification({
+          type: 'error',
+          message:
+            'Your current configuration does not match the update requirements. Please try again after all the requirements are fulfilled.',
+        })
         return true
       }
       for (let index = 0; index < this.updateSteps.length; index++) {
@@ -324,9 +335,10 @@ export default {
             currentStep.translationKey == 'settings.update_app.finishing_update'
           ) {
             this.isUpdating = false
-            window.toastr['success'](
-              this.$t('settings.update_app.update_success')
-            )
+            this.showNotification({
+              type: 'success',
+              message: this.$t('settings.update_app.update_success'),
+            })
 
             setTimeout(() => {
               location.reload()
@@ -335,7 +347,10 @@ export default {
         } catch (error) {
           currentStep.started = false
           currentStep.completed = true
-          window.toastr['error'](this.$t('validation.something_went_wrong'))
+          this.showNotification({
+            type: 'error',
+            message: this.$t('validation.something_went_wrong'),
+          })
           this.onUpdateFailed(currentStep.translationKey)
           return false
         }
@@ -344,7 +359,7 @@ export default {
 
     onUpdateFailed(translationKey) {
       let stepName = this.$t(translationKey)
-      swal({
+      this.$swal({
         title: this.$t('settings.update_app.update_failed'),
         text: this.$tc('settings.update_app.update_failed_text', stepName, {
           step: stepName,
