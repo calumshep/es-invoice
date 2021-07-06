@@ -39,7 +39,7 @@ class ConvertEstimateController extends Controller
             'reference_number' => $estimate->reference_number,
             'user_id' => $estimate->user_id,
             'company_id' => $request->header('company'),
-            'invoice_template_id' => 1,
+            'invoice_template_id' => 4,
             'status' => Invoice::STATUS_DRAFT,
             'paid_status' => Invoice::STATUS_UNPAID,
             'sub_total' => $estimate->sub_total,
